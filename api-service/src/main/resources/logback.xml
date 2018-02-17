@@ -2,7 +2,6 @@
     <appender name="COLOR" class="ch.qos.logback.core.ConsoleAppender">
         <encoder>
             <pattern>[%date] %highlight([%level]) [%logger{10} %file:%line] %msg%n</pattern>
-            <!--             ^^^^^^^^^^ -->
         </encoder>
     </appender>
     <appender name="NOCOLOR" class="ch.qos.logback.core.ConsoleAppender">
