@@ -9,7 +9,6 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.RestController;
-import sun.rmi.runtime.Log;
 
 import java.util.Locale;
 import java.util.concurrent.atomic.AtomicLong;
@@ -18,7 +17,6 @@ import java.util.concurrent.atomic.AtomicLong;
 @RequestMapping("/api")
 public class GreetingController {
   private Logger logger = LoggerFactory.getLogger(GreetingController.class);
-  private static final String TEMPLATE = "Hello, %s!";
   private final AtomicLong counter = new AtomicLong();
 
   @Autowired
@@ -27,7 +25,7 @@ public class GreetingController {
   @GetMapping("greeting")
   public Greeting greeting(Locale locale, @RequestParam(value = "name", defaultValue = "World") String name) {
     logger.debug("The language is {}", locale.getDisplayLanguage());
-    final String greetingMessage = messageSource.getMessage("greeting", new String[] {name}, new Locale("ru"));
+    final String greetingMessage = messageSource.getMessage("greeting", new String[] {name}, locale);
     return new Greeting(counter.incrementAndGet(),
         greetingMessage);
   }
