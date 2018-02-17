@@ -23,8 +23,8 @@ public class GreetingController {
   private MessageSource messageSource;
 
   @GetMapping("greeting")
-  public Greeting greeting(Locale locale, @RequestParam(value = "name", defaultValue = "World") String name) {
-    logger.debug("The language is {}", locale.getDisplayLanguage());
+  public Greeting greeting(@RequestParam(value = "name", defaultValue = "World") String name, Locale locale) {
+    logger.debug("The language is {} {}", locale.getDisplayLanguage(), locale.getCountry());
     final String greetingMessage = messageSource.getMessage("greeting", new String[] {name}, locale);
     return new Greeting(counter.incrementAndGet(),
         greetingMessage);

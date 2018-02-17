@@ -9,6 +9,8 @@ import org.springframework.context.annotation.PropertySource;
 import org.springframework.context.support.ResourceBundleMessageSource;
 import org.springframework.web.servlet.config.annotation.EnableWebMvc;
 
+import java.nio.charset.StandardCharsets;
+
 @Configuration
 @EnableWebMvc
 @ComponentScan(basePackages = "com.unrealwork.beforedie")
@@ -18,7 +20,7 @@ public class ServiceConfiguration {
   public MessageSource messageSource() {
     ResourceBundleMessageSource messageSource = new ResourceBundleMessageSource();
     messageSource.setBasename("messages");
-    messageSource.setDefaultEncoding("UTF-8 ");
+    messageSource.setDefaultEncoding(StandardCharsets.UTF_8.displayName());
     return messageSource;
   }
 }
